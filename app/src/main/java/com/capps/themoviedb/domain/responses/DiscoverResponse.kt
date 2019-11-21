@@ -11,5 +11,5 @@ data class DiscoverResponse(
     @SerializedName("total_pages")
     val totalPages: Int,
     @SerializedName("results")
-    val results: List<Movie>
+    val results: List<Movie?>
 )

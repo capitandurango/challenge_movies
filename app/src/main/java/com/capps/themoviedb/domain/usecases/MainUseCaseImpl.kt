@@ -21,7 +21,7 @@ class MainUseCaseImpl {
      * Call the service for retreives the new movies.
      *
      */
-    suspend fun discover(): APIResponse<DiscoverResponse>
-            = repository.discover()
+    suspend fun discover(page: Int = 1): APIResponse<DiscoverResponse>
+            = repository.discover(page)
 
 }

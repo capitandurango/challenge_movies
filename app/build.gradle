@@ -20,11 +20,15 @@ android {
     buildTypes {
         debug {
             buildConfigField "String", "URL_BASE", '"https://api.themoviedb.org/"'
+            buildConfigField "String", "URL_IMAGE_BASE", '"https://image.tmdb.org/t/p/w185_and_h278_bestv2/"'
+
+
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "URL_BASE", '"https://api.themoviedb.org/"'
+            buildConfigField "String", "URL_IMAGE_BASE", '"https://image.tmdb.org/t/p/w185_and_h278_bestv2/"'
         }
     }
 }
