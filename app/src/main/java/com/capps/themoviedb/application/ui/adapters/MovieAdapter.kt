@@ -24,12 +24,23 @@ class MovieAdapter (private var items: MutableList<Movie?>,
                     private val refresh: (Boolean) -> Unit):
     RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
+    // For enable/disable the update rows
+    private var isSearching: Boolean = false
+
     /**
      * Change the datasource.
      */
     fun changeDataSource(items: List<Movie?>){
         this.items.clear()
         this.items.addAll(items)
+        this.notifyDataSetChanged()
+    }
+
+    /**
+     * Seter for the seraching action.
+     */
+    fun setSearching(searching: Boolean){
+        isSearching = searching
         this.notifyDataSetChanged()
     }
 
@@ -44,7 +55,7 @@ class MovieAdapter (private var items: MutableList<Movie?>,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindCell(items[position])
-        if(position == items.size-1) {
+        if(position == items.size-1 && !isSearching) {
             refresh(true)
         } else {
             refresh(false)

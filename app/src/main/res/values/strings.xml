@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">The Movie DB</string>
     <string name="common_search">Search</string>
+    <string name="common_runtime">Runtime</string>
+    <string name="common_homepage">Homepage</string>
+    <string name="common_minutes">%d minutes</string>
+
+    <string name="error_no_info_homepage">No information yet.</string>
+    <string name="error_no_info_runtime">No information yet.</string>
 </resources>

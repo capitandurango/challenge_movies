@@ -42,13 +42,13 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpUI()
+        setUpObservers()
         fetchData()
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
-
+    /**
+     * Configure the intial values from the screen.
+     */
     private fun setUpUI(){
         movieAdapter = MovieAdapter(mutableListOf(), { click ->
             Log.d(TAG, "Click on item ${click}")
@@ -70,6 +70,16 @@ class MainFragment : Fragment() {
             adapter = movieAdapter
         }
     }
+
+    /**
+     * Inicilaize the rest of observers.
+     */
+    private fun setUpObservers(){
+        model.isSearching().observe(this, Observer{ isSearching ->
+            movieAdapter.setSearching(isSearching)
+        })
+    }
+
     /**
      * Retreive the information for fill the recycler view.
      */

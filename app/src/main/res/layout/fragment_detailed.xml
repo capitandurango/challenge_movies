@@ -42,6 +42,57 @@
                 android:gravity="center"
                 tools:text="Description" />
 
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/lbl_runtime"
+                    android:text="@string/common_runtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="16sp"
+                    android:textSize="20sp"
+                    android:gravity="center" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_runtime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/lbl_runtime"
+                    android:layout_marginTop="16sp"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    tools:text="190 minutos" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/lbl_homepage"
+                    android:text="@string/common_homepage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="16sp"
+                    android:textSize="20sp"
+                    android:gravity="center" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_homepage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/lbl_homepage"
+                    android:layout_marginTop="16sp"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    tools:text="www.page.com" />
+            </RelativeLayout>
+
+
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

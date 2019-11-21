@@ -8,11 +8,17 @@ import androidx.lifecycle.liveData
 import com.capps.themoviedb.data.network.APIResponse
 import com.capps.themoviedb.domain.responses.DiscoverResponse
 import com.capps.themoviedb.domain.responses.Movie
+import com.capps.themoviedb.domain.responses.MovieDetailResponse
 import com.capps.themoviedb.domain.usecases.MainUseCaseImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+/**
+ * Main View Model.
+ * Note: This VM is shared between [MainActivity], [MainFragment], [DetailedFragment],
+ * For shared easy data with lifecycle protection.
+ */
 class MainViewModel : ViewModel() {
 
     /**
@@ -29,6 +35,11 @@ class MainViewModel : ViewModel() {
      * Variable that keep the original response for the service.
      */
     private var copyItems: MutableList<Movie?> = mutableListOf()
+
+    /**
+     * For notify the adapter don't update the list of item, if the user is searching.
+     */
+    private val isSearching: MutableLiveData<Boolean> = MutableLiveData()
 
     /**
      * We ned to keep the response for move between pages.
@@ -73,6 +84,20 @@ class MainViewModel : ViewModel() {
     }
 
     /**
+     * Method that launch the service for request detail ionformation.
+     *
+     * @param movie: [Movie] for looking the detail
+     */
+    fun detail(movie: Movie): LiveData<APIResponse<MovieDetailResponse>> {
+        Log.d(TAG, "Searching the movie detail ...")
+        return liveData {
+            emit(
+                mainUseCase.detail(movie)
+            )
+        }
+    }
+
+    /**
      * Put a selected item in the live data, for uploada fragments.
      */
     fun setSelectItem(item: Movie){
@@ -100,6 +125,18 @@ class MainViewModel : ViewModel() {
      * Return the list of available items.
      */
     fun getItems() = items
+
+    /**
+     * Set the new value for searching.
+     */
+    fun setIsSearching(searching: Boolean){
+        isSearching.postValue(searching)
+    }
+
+    /**
+     * Get the status for isSearching.
+     */
+    fun isSearching() = isSearching
 
     /**
      * Function for filter items.

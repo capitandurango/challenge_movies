@@ -33,8 +33,6 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.fragment_container, MainFragment())
         fragmentTransaction.commit()
-
-        model.discover()
     }
 
     override fun onResume() {
@@ -85,6 +83,11 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                if(newText.isNullOrEmpty())
+                    model.setIsSearching(false)
+                else
+                    model.setIsSearching(true)
+
                 callSearch(newText)
                 return true
             }

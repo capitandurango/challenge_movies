@@ -4,6 +4,8 @@ import android.util.Log
 import com.capps.themoviedb.data.network.APIResponse
 import com.capps.themoviedb.data.network.MovieDBServices
 import com.capps.themoviedb.domain.responses.DiscoverResponse
+import com.capps.themoviedb.domain.responses.Movie
+import com.capps.themoviedb.domain.responses.MovieDetailResponse
 
 /**
  * The [MoviesRemoteRepositoryImpl] allows to connect to the server for retreive data.
@@ -34,6 +36,26 @@ class MoviesRemoteRepositoryImpl {
             val response = movieApi.discover(
                 authorizationHeader = "Bearer $ACCESS_TOKEN",
                 page = page
+            )
+
+            APIResponse.Success(response)
+        } catch (ex: Exception){
+            val message = "Error retreiving data"
+            Log.e(TAG, message)
+            APIResponse.Error(message, ex)
+        }
+    }
+
+    /**
+     * Method for retreive the detail for the movie.
+     */
+    suspend fun detail(movie: Movie)
+            : APIResponse<MovieDetailResponse> {
+        Log.d(TAG, "Making request for remote repository....")
+        return try {
+            val response = movieApi.detail(
+                authorizationHeader = "Bearer $ACCESS_TOKEN",
+                id = movie.id
             )
 
             APIResponse.Success(response)
